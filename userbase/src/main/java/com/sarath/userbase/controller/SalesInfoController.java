@@ -3,9 +3,13 @@ package com.sarath.userbase.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sarath.userbase.model.SalesInfo;
@@ -29,5 +33,10 @@ public class SalesInfoController {
 	{
 		Optional<SalesInfo> sale=salesInfoRepository.findById(id);
 		return sale;
+	}
+	@PostMapping("/sales")
+	public SalesInfo createSale(@Valid @RequestBody SalesInfo salesInfo)
+	{
+		return salesInfoRepository.save(salesInfo);
 	}
 }
