@@ -28,6 +28,7 @@ public class UserController {
 	
 	
 	
+	
 
 	
 
@@ -38,15 +39,7 @@ public class UserController {
 		return userRepository.findAll();
 	}
 	
-//	
-//	@GetMapping("/customHeader")
-//	ResponseEntity<String> customHeader() {
-//	    HttpHeaders headers = new HttpHeaders();
-//	    headers.add("Custom-Header", "foo");
-//	        
-//	    return new ResponseEntity<>(
-//	      "Custom header set", headers, HttpStatus.OK);
-//	}
+
 	
 	
 	@GetMapping("/users/{id}")
@@ -61,7 +54,6 @@ public class UserController {
 	@PostMapping("/users")
 	public User createUser(@Valid @RequestBody User user)
 	{
-		
 		return userRepository.save(user);
 	}
 
