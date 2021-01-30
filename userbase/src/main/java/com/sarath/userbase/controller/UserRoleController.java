@@ -19,6 +19,7 @@ public class UserRoleController {
 	UserRoleRepository userRoleRepository;
 	
 	
+	
 	@GetMapping("/roles")
 	public List<UserRole> getAllUsers()
 	{

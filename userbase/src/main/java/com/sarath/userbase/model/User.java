@@ -1,6 +1,4 @@
 package com.sarath.userbase.model;
-//This is a test
-//Hai
 
 
 
@@ -9,6 +7,7 @@ import java.util.Date;
 
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,6 +17,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.data.annotation.CreatedDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -45,13 +48,16 @@ public class User {
 
 	private String email;
 
-	@JsonIgnore
+	
 	private String password;
 
-	
+	@Column(name="created_time")
+	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date created_time;
 
+	@Column(name="last_modified_time")
+	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date last_modified_time;
 	
@@ -61,6 +67,10 @@ public class User {
 	@ManyToOne()
 	@JoinColumn(name="user_role_id", referencedColumnName = "user_role_id", insertable = false, updatable = false)    
 	private UserRole userRole;
+	
+	
+
+	
 
 
 	public User() {
@@ -68,23 +78,7 @@ public class User {
 	}
 
 
-	public User(int userid, int user_role_id, String fname, String lname, String gender, String phonenumber,
-			String email, String password, Date created_time, Date last_modified_time, boolean active,
-			UserRole userRole) {
-		super();
-		this.userid = userid;
-		this.user_role_id = user_role_id;
-		this.fname = fname;
-		this.lname = lname;
-		this.gender = gender;
-		this.phonenumber = phonenumber;
-		this.email = email;
-		this.password = password;
-		this.created_time = created_time;
-		this.last_modified_time = last_modified_time;
-		this.active = active;
-		this.userRole = userRole;
-	}
+
 
 
 	public int getUserid() {
@@ -207,6 +201,29 @@ public class User {
 	}
 
 
+	 
+
+
+	public User(int userid, int user_role_id, String fname, String lname, String gender, String phonenumber,
+			String email, String password, Date created_time, Date last_modified_time, boolean active,
+			UserRole userRole) {
+		super();
+		this.userid = userid;
+		this.user_role_id = user_role_id;
+		this.fname = fname;
+		this.lname = lname;
+		this.gender = gender;
+		this.phonenumber = phonenumber;
+		this.email = email;
+		this.password = password;
+		this.created_time = created_time;
+		this.last_modified_time = last_modified_time;
+		this.active = active;
+		this.userRole = userRole;
+		
+	}
+
+
 	@Override
 	public String toString() {
 		return "User [userid=" + userid + ", user_role_id=" + user_role_id + ", fname=" + fname + ", lname=" + lname
@@ -214,7 +231,9 @@ public class User {
 				+ ", created_time=" + created_time + ", last_modified_time=" + last_modified_time + ", active=" + active
 				+ ", userRole=" + userRole + "]";
 	}
-	
+
+
+
 	
 
 
