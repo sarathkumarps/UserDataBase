@@ -6,16 +6,18 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sarath.userbase.model.Business;
 import com.sarath.userbase.model.SalesInfo;
 import com.sarath.userbase.repository.BusinessRepository;
-import com.sarath.userbase.repository.UserRepository;
+import com.sarath.userbase.repository.UserDataRepository;
 
 @RestController
 public class BusinessController {
@@ -45,6 +47,15 @@ public class BusinessController {
 		return businessRepository.save(business);
 		
 	}
+	
+	@PutMapping("/business/{id}")
+	public ResponseEntity<Business> updateBusiness(@Valid @PathVariable int id, @RequestBody Business business)
+	{
+		final Business updatedBusiness=businessRepository.save(business);
+		return ResponseEntity.ok(updatedBusiness);
+		
+	}
+	
 	
 
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sarath.userbase.model.User;
+import com.sarath.userbase.model.UserData;
 import com.sarath.userbase.model.UserRole;
 import com.sarath.userbase.repository.UserRoleRepository;
 
