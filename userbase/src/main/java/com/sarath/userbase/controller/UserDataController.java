@@ -28,11 +28,18 @@ public class UserDataController {
 	UserDataRepository userDataRepository;
 	
 
+//	@GetMapping("/users")
+//	public List<UserData> getAllUsers()
+//	{
+//		
+//		return userDataRepository.findAll();
+//	}
 	@GetMapping("/users")
-	public List<UserData> getAllUsers()
+	public Optional<List<UserData>> getAllUsers()
 	{
+		Optional<List<UserData>> user=Optional.of(userDataRepository.findAll());
 		
-		return userDataRepository.findAll();
+		return user;
 	}
 	
 

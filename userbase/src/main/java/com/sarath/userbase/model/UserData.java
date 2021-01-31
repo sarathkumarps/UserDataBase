@@ -3,8 +3,10 @@ package com.sarath.userbase.model;
 
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
-
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,7 +21,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.CreatedDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -37,7 +41,7 @@ public class UserData {
 	
 	
 	private int user_role_id;
-	
+	@Size(message = "Enter a valid name",min = 1)
 	private String fname;
 	
 	private String lname;
@@ -70,22 +74,64 @@ public class UserData {
 	private UserRole userRole;
 	
 	
-
+	//Printing Status
 	
+//	private  List<ResponseStatus> responseStatus=new ArrayList<ResponseStatus>(Arrays.asList(new ResponseStatus("1426615606",200,"null","fetched")));
+			
+		
+	
+	
+	
+
+
 
 
 	public UserData() {
 		super();
 	}
 
+	public UserData(int userid, int user_role_id, @Size(message = "Enter a valid name", min = 1) String fname, String lname,
+			String gender, String phonenumber, String email, String password, Date created_time, Date last_modified_time,
+			boolean active, UserRole userRole
+//			,List<ResponseStatus> responseStatus
+			) {
+		super();
+		this.userid = userid;
+		this.user_role_id = user_role_id;
+		this.fname = fname;
+		this.lname = lname;
+		this.gender = gender;
+		this.phonenumber = phonenumber;
+		this.email = email;
+		this.password = password;
+		this.created_time = created_time;
+		this.last_modified_time = last_modified_time;
+		this.active = active;
+		this.userRole = userRole;
+//		this.responseStatus = responseStatus;
+	}
+	
+	
 
 
 
 
+
+
+	
+	
+	
 	public int getUserid() {
 		return userid;
 	}
 
+//	public List<ResponseStatus> getResponseStatus() {
+//		return responseStatus;
+//	}
+//
+//	public void setResponseStatus(List<ResponseStatus> responseStatus) {
+//		this.responseStatus = responseStatus;
+//	}
 
 	public void setUserid(int userid) {
 		this.userid = userid;
@@ -95,13 +141,12 @@ public class UserData {
 	public int getUser_role_id() {
 		return user_role_id;
 	}
-
-
+	
 	public void setUser_role_id(int user_role_id) {
 		this.user_role_id = user_role_id;
 	}
 
-
+	
 	public String getFname() {
 		return fname;
 	}
@@ -182,12 +227,6 @@ public class UserData {
 	}
 
 
-	
-
-
-	
-
-
 	public UserRole getUserRole() {
 		return userRole;
 	}
@@ -205,45 +244,28 @@ public class UserData {
 		return active;
 	}
 
-
-	
-
-
 	public void setActive(boolean active) {
 		this.active = active;
 	}
 
-
-
-
-
-	public UserData(int userid, int user_role_id, String fname, String lname, String gender, String phonenumber,
-			String email, String password, Date created_time, Date last_modified_time, boolean active,
-			UserRole userRole) {
-		super();
-		this.userid = userid;
-		this.user_role_id = user_role_id;
-		this.fname = fname;
-		this.lname = lname;
-		this.gender = gender;
-		this.phonenumber = phonenumber;
-		this.email = email;
-		this.password = password;
-		this.created_time = created_time;
-		this.last_modified_time = last_modified_time;
-		this.active = active;
-		this.userRole = userRole;
-		
-	}
-
-
 	@Override
 	public String toString() {
-		return "User [userid=" + userid + ", user_role_id=" + user_role_id + ", fname=" + fname + ", lname=" + lname
+		return "UserData [userid=" + userid + ", user_role_id=" + user_role_id + ", fname=" + fname + ", lname=" + lname
 				+ ", gender=" + gender + ", phonenumber=" + phonenumber + ", email=" + email + ", password=" + password
 				+ ", created_time=" + created_time + ", last_modified_time=" + last_modified_time + ", active=" + active
-				+ ", userRole=" + userRole + "]";
+				+ ", userRole=" + userRole + ""+ 
+//				", responseStatus=" + responseStatus +
+				"]";
 	}
+	
+//	@Override
+//	public String toString() {
+//		return "UserData [userid=" + userid + ", user_role_id=" + user_role_id + ", fname=" + fname + ", lname=" + lname
+//				+ ", gender=" + gender + ", phonenumber=" + phonenumber + ", email=" + email + ", password=" + password
+//				+ ", created_time=" + created_time + ", last_modified_time=" + last_modified_time + ", active=" + active
+//				+ ", userRole=" + userRole + "]" ;
+//	}
+
 
 
 
